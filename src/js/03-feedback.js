@@ -29,12 +29,17 @@ const handleSubmit = event => {
     email: emailInput.value,
     message: messageTextarea.value,
   };
-  console.log('Form submitted with data:', formData);
 
-  emailInput.value = '';
-  messageTextarea.value = '';
+  if (!formData.email || !formData.message) {
+    alert('Wypełnij wszystkie pola formularza.');
+  } else {
+    console.log('Form submitted with data:', formData);
 
-  localStorage.removeItem(STORAGE_KEY);
+    emailInput.value = '';
+    messageTextarea.value = '';
+
+    localStorage.removeItem(STORAGE_KEY);
+  }
 };
 
 form.addEventListener('input', throttle(saveFormState, 500));
